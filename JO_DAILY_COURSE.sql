@@ -14,7 +14,8 @@ left join (
   select course_code, course_version, cv_launch, month_of_term, program_code, program_version, status, 
       count(distinct(student_pidm)) as cnt
     from LAX_DAILY_PREP 
-    group by course_code, course_version, cv_launch, month_of_term, program_code, program_version, status --group by has the same effect as distinct in this query
+    --group by has the same effect as distinct in this query (and group by is required for the count)
+    group by course_code, course_version, cv_launch, month_of_term, program_code, program_version, status 
   )d 
     on e.status=d.status
     and e.course_code=d.course_code

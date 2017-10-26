@@ -36,6 +36,8 @@ from (
     and g.course_number=h.course_number
     and h.assessment_category='Assessment'
   left join (
+    --this rewrite of the BK code adds the calendar_date to the partition (changes the results) 
+    --***Do we want the change? Is there a business reason that we would want the numbers to be grouped by the calendar_date as well?***
       select distinct(student_pidm), course_number, calendar_date, sum(N_complete) over (partition by student_pidm, course_number, calendar_date) as N_units  
        from wgubi.fact_student_engagement 
       )j 
@@ -43,6 +45,8 @@ from (
     and g.course_number = j.course_number
     and j.calendar_date between g.term_start_date and g.term_end_date
   left join (
+     --this rewrite adds the assess_date to the partition (changes the results)
+    --***Do we want the change?
     select distinct(student_pidm), assessment_code, assess_date, count(assess_attempt_id) over (partition by student_pidm, assessment_code, assess_date) as N_preasmts 
       from wgubi.vw_fact_oa_assessment_attempt 
     ) k

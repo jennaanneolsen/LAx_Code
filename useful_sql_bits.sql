@@ -13,3 +13,19 @@ SELECT
 t.Column_Name AS column_name, t.nullable
 FROM sys.all_tab_columns t
 WHERE t.Table_Name = 'ACTIVE_ASMT';
+
+--update based on join -- requires privileges to update sys tables
+update  
+ (
+select c.column_name, c.comments, co.comments as new_comments
+from sys.all_col_comments c 
+  left outer join (
+    select column_name cn, comments 
+    from sys.all_col_comments
+    where table_name = 'RST_STUDENT'
+    )co on c.column_name = co.cn
+where c.table_name = 'JO_RST_STUDENT'
+and co.comments is not NULL
+)cu
+set comments = new_comments
+;

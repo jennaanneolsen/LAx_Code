@@ -37,3 +37,12 @@ and referenced_type in ('TABLE','VIEW') --limiting the referenced object type
 and name in ('VW_RST_STUDENT','VW_RST_ASSESSMENT') --list of views for which you want the dependencies
 order by name
 ;
+
+--code from lines 34-39 above -- set to return each referenced table only once even if it is a dependency for multiple views
+select distinct(referenced_name) from 
+  (
+    select * from sys.all_dependencies
+      where type = 'VIEW' 
+    and referenced_type in ('TABLE','VIEW') --limiting the referenced object type
+    and name in ('VW_RST_STUDENT','VW_RST_ASSESSMENT')
+  )vw_dep; --originally abbreviated as 'vd' which was determined to be inappropriate

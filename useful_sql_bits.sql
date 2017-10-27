@@ -29,3 +29,11 @@ and co.comments is not NULL
 )cu
 set comments = new_comments
 ;
+
+--find all of the tables or views referenced by a view list
+select * from sys.all_dependencies
+where type = 'VIEW' 
+and referenced_type in ('TABLE','VIEW') --limiting the referenced object type
+and name in ('VW_RST_STUDENT','VW_RST_ASSESSMENT') --list of views for which you want the dependencies
+order by name
+;

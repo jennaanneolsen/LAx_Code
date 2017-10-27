@@ -6,6 +6,13 @@ select * from sys.all_col_comments
 --where owner = 'WGUBI'
 ;
 
+--column names with more than 1 distinct comment value (including NULL)
+select c.* from sys.all_col_comments c
+  join (
+  select column_name, count(distinct(comments)) from sys.all_col_comments group by column_name having count(distinct(comments)) > 1
+  )c2 on c.column_name = c2.column_name 
+order by c.column_name, comments; 
+
 --columns and comments (possibly constraint based on column name)...
 SELECT t.Table_Name AS table_name,
 c.Column_Name AS column_name,

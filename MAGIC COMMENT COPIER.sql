@@ -30,7 +30,7 @@ and c2.column_name is NULL; --only ONE non NULL comment value
 --merge comments into new comment?
 --master comment replaces NULL and not NULL?
 --handle individually 
---column names with more than 1 distinct comment value (including NULL)
+--column names with more than 1 distinct comment value (including NULL) --27707 10-30-17
 select c.* from sys.all_col_comments c
   join (
   select column_name, count(distinct(comments)) from sys.all_col_comments group by column_name having count(distinct(comments)) > 1

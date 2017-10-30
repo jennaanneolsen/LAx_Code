@@ -8,6 +8,9 @@ INNER JOIN sys.all_tab_columns c ON T.Table_Name = C.Table_Name
 WHERE C.Column_Name LIKE '%DENO%' --change here as needed -- leave the '%' unless you are searching for the beginning or end of the string
 ORDER BY T.Table_Name;
 
+--can also be done like this:
+select * from ALL_TAB_COLUMNS where owner='WGUBI' and COLUMN_NAME like 'COURSE_VERSION_ID%';
+
 --all columns from a specific table -- includes nullable
 SELECT 
 t.Column_Name AS column_name, t.nullable
@@ -46,3 +49,12 @@ select distinct(referenced_name) from
     and referenced_type in ('TABLE','VIEW') --limiting the referenced object type
     and name in ('VW_RST_STUDENT','VW_RST_ASSESSMENT')
   )vw_dep; --originally abbreviated as 'vd' which was determined to be inappropriate
+  
+  --search for a table or view based on the name (or part of it)
+select * from ALL_OBJECTS
+where owner='WGUBI' and OBJECT_TYPE in ('TABLE','VIEW')
+and OBJECT_NAME like '%COURSE_VERSION%';
+
+--search text in functions and stored procedures for key word:
+select * from all_source where text like '%VW_RST_STUDENT%';
+

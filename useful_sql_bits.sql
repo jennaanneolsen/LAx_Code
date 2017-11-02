@@ -59,5 +59,6 @@ and OBJECT_NAME like '%COURSE_VERSION%';
 select * from all_source where text like '%VW_RST_STUDENT%';
 
 --column remains usable but doesn't count towards select *
+--requires Oracle 12 or newer
 alter table mytable modify column undesired_col_name INVISIBLE;
 

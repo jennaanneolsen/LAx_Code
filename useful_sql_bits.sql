@@ -62,3 +62,6 @@ select * from all_source where text like '%VW_RST_STUDENT%';
 --requires Oracle 12 or newer
 alter table mytable modify column undesired_col_name INVISIBLE;
 
+--check oracle version
+select * from v$version;
+

@@ -58,3 +58,6 @@ and OBJECT_NAME like '%COURSE_VERSION%';
 --search text in functions and stored procedures for key word:
 select * from all_source where text like '%VW_RST_STUDENT%';
 
+--column remains usable but doesn't count towards select *
+alter table mytable modify column undesired_col_name INVISIBLE;
+

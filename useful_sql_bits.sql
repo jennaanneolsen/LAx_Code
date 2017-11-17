@@ -65,3 +65,5 @@ alter table mytable modify column undesired_col_name INVISIBLE;
 --check oracle version
 select * from v$version;
 
+--get date part from date field
+extract(month from [date_field])

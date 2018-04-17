@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="LAx Data Model" id="B5423115-3FCE-8875-93CA-C84CD116FB09" version="3.5">
-<createdBy>tim.long</createdBy>
-<createdTime>2017-10-30 16:05:44 UTC</createdTime>
-<ownerDesignName>LAx Data Model</ownerDesignName>
-<capitalNames>false</capitalNames>
-<designId>B5423115-3FCE-8875-93CA-C84CD116FB09</designId>
-</OSDM_Design>
